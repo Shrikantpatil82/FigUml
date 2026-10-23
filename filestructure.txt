@@ -1,0 +1,44 @@
+|-- .env
+|-- .expo
+    |-- README.md
+    |-- settings.json
+|-- .gitignore
+|-- FigUML_Complete_Session_Export.md
+|-- index.html
+|-- package-lock.json
+|-- package.json
+|-- public
+    |-- api
+        |-- health.json
+|-- src
+    |-- App.jsx
+    |-- components
+        |-- Footer.css
+        |-- Footer.jsx
+        |-- Modal.css
+        |-- Modal.jsx
+        |-- Navbar.css
+        |-- Navbar.jsx
+        |-- Toast.css
+        |-- Toast.jsx
+    |-- context
+        |-- AuthContext.jsx
+    |-- firebase.js
+    |-- index.css
+    |-- main.jsx
+    |-- pages
+        |-- Auth.css
+        |-- Auth.jsx
+        |-- Editor.css
+        |-- Editor.jsx
+        |-- Landing.css
+        |-- Landing.jsx
+        |-- MyDiagrams.css
+        |-- MyDiagrams.jsx
+        |-- SharedView.css
+        |-- SharedView.jsx
+    |-- utils
+        |-- diagramEngine.js
+        |-- diagramStorage.js
+        |-- kroki.js
+|-- vite.config.js

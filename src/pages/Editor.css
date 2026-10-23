@@ -1,0 +1,410 @@
+.editor-page {
+    display: flex;
+    height: 100vh;
+    padding-top: var(--navbar-height);
+    overflow: hidden;
+}
+
+/* Panes */
+.editor-pane {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.editor-pane--left {
+    width: 50%;
+    border-right: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+.editor-pane--right {
+    width: 50%;
+    background: var(--bg-primary);
+}
+
+/* Headers */
+.editor-pane__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    min-height: 48px;
+}
+
+.editor-pane__header--right {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.editor-pane__filename {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.editor-pane__filename:focus {
+    border-color: var(--primary);
+    background: var(--bg-primary);
+}
+
+/* Menu */
+.editor-pane__menu-wrap {
+    position: relative;
+}
+
+.editor-pane__menu-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.editor-pane__menu-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.editor-pane__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 160px;
+    padding: 6px;
+    z-index: var(--z-dropdown);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.editor-pane__menu button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.editor-pane__menu button:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.editor-pane__saved {
+    font-size: 0.75rem;
+    color: #10b981;
+    font-weight: 600;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Type Bar */
+.editor-pane__type-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.editor-pane__select {
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.editor-pane__select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* CodeMirror Editor */
+.editor-pane__editor {
+    flex: 1;
+    overflow: auto;
+}
+
+.editor-pane__editor .cm-editor {
+    height: 100%;
+    font-size: 14px;
+}
+
+.editor-pane__editor .cm-editor.cm-focused {
+    outline: none;
+}
+
+.editor-pane__editor .cm-scroller {
+    overflow: auto;
+}
+
+.editor-pane__editor .cm-gutters {
+    background: var(--bg-tertiary);
+    border-right: 1px solid var(--border);
+}
+
+/* Output Controls */
+.editor-pane__output-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Zoom Controls */
+.editor-pane__zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.editor-pane__zoom-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.editor-pane__zoom-btn:hover:not(:disabled) {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.editor-pane__zoom-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.editor-pane__zoom-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 40px;
+    text-align: center;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+}
+
+/* Output Area */
+.editor-pane__output {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+}
+
+.editor-pane__svg-container {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+}
+
+.editor-pane__svg-container svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.editor-pane__svg-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.editor-pane__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
+.editor-pane__rendering {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+}
+
+.editor-pane__error {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: rgba(239, 68, 68, 0.08);
+    color: #ef4444;
+    font-size: 0.85rem;
+    max-width: 400px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* ============ Guide Button ============ */
+.editor-pane__guide-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ============ Guide Modal ============ */
+.guide-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.guide-modal {
+    width: 65%;
+    max-width: 720px;
+    max-height: 70vh;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.guide-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.guide-modal__header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.guide-modal__close {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.guide-modal__close:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.guide-modal__body {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.guide-section h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.guide-section__code {
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text-primary);
+}
+
+.guide-section__note {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 12px;
+    border-left: 3px solid var(--primary);
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 768px) {
+    .editor-page {
+        flex-direction: column;
+    }
+
+    .editor-pane--left,
+    .editor-pane--right {
+        width: 100%;
+        height: 50%;
+        border-right: none;
+    }
+
+    .editor-pane--left {
+        border-bottom: 2px solid var(--border);
+    }
+
+    .editor-pane__output-controls {
+        flex-wrap: wrap;
+    }
+
+    .editor-pane__zoom-controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .editor-pane__btn-label {
+        display: none;
+    }
+
+    .guide-modal {
+        width: 92%;
+        max-height: 80vh;
+    }
+}
